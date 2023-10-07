@@ -26,7 +26,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     if (selectedPageIndex == 1) {
       activePage = const MealsScreen(title: "Favo Meals", meals: dummyMeals);
-      activePageTitle = 'Favo';
+      activePageTitle = 'Favorites';
     }
 
     return Scaffold(

@@ -21,7 +21,17 @@ class MealsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (meals.isEmpty) {
-      return const Center(child: Text("Choose another category please...! :)"));
+      return const Center(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Uh...Ooh Nothing here ... :)",
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+        ],
+      ));
     }
     return Scaffold(
       appBar: AppBar(

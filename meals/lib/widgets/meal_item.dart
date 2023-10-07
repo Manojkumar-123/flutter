@@ -65,18 +65,19 @@ class MealItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         MealItemTrait(
-                            icon: Icons.schedule, label: '${meal.duration}'),
+                            icon: Icons.schedule,
+                            label: '${meal.duration} min'),
                         const SizedBox(
-                          width: 12,
+                          width: 10,
                         ),
-                        MealItemTrait(
-                            icon: Icons.work, label: '$complexityText min'),
+                        MealItemTrait(icon: Icons.work, label: complexityText),
                         const SizedBox(
-                          width: 12,
+                          width: 10,
                         ),
                         Expanded(
                           child: MealItemTrait(
-                              icon: Icons.attach_money, label: complexityText),
+                              icon: Icons.attach_money,
+                              label: affordabilityText),
                         ),
                       ],
                     )
