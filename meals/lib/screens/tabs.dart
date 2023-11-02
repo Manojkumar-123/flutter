@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:meals/data/dummy_data.dart';
-import 'package:meals/models/meal.dart';
+import 'package:meals/providers/fav_provider.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/main_drawer.dart';
+import 'package:meals/providers/meals_provider.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -33,25 +33,6 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     });
   }
 
-  void showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  final List<Meal> favMeal = [];
-  void toggleFav(Meal meal) {
-    setState(() {
-      if (favMeal.contains(meal)) {
-        favMeal.remove(meal);
-        showInfoMessage("Item removed");
-      } else {
-        favMeal.add(meal);
-        showInfoMessage("Item added");
-      }
-    });
-  }
-
   void setScreen(String identifier) async {
     if (identifier == "filters") {
       Navigator.of(context).pop();
@@ -69,7 +50,8 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final availableMeals = dummyMeals.where((meal) {
+    final meals = ref.watch(MealsProvider);
+    final availableMeals = meals.where((meal) {
       if (selectedFilter[Filter.glutenFree]! && !meal.isGlutenFree) {
         return false;
       }
@@ -86,15 +68,14 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     }).toList();
 
     Widget activePage = CategoriesScreen(
-      toggleFavorite: toggleFav,
       availableMeals: availableMeals,
     );
     var activePageTitle = 'Categories';
 
     if (selectedPageIndex == 1) {
+      final favMeals = ref.watch(favMealProvider);
       activePage = MealsScreen(
-        meals: favMeal,
-        toggleFavorite: toggleFav,
+        meals: favMeals,
       );
       activePageTitle = 'Favorites';
     }
