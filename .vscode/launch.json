@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "flutter_internals",
             "cwd": "flutter_internals",
@@ -43,6 +44,12 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
+        },
+        {
+            "name": "first_app",
+            "cwd": "first_app",
+            "request": "launch",
+            "type": "dart",
         }
     ]
 }
