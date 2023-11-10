@@ -1,3 +1,4 @@
+import 'package:first_app/services/auth_methods.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -8,6 +9,9 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
         child: Container(
           padding: const EdgeInsets.all(12),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
                 'Sign Up',
@@ -34,6 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 8,
               ),
               TextField(
+                controller: _emailController,
                 decoration: InputDecoration(
                     labelText: 'Enter your email',
                     border: OutlineInputBorder(
@@ -43,6 +49,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 8,
               ),
               TextField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                     labelText: 'Enter your password',
                     border: OutlineInputBorder(
@@ -50,6 +57,16 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(
                 height: 8,
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    await AuthMethods().signUpUser(
+                        email: _emailController.text,
+                        password: _passwordController.text);
+                  },
+                  child: const Text('Creare Account')),
+              const SizedBox(
+                height: 12,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +76,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     width: 8,
                   ),
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         Navigator.pop(context);
                       },
                       child: const Text('Log In'))
