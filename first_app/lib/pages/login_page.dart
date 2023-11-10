@@ -69,8 +69,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         email: _emailController.text,
                         password: _passwordController.text);
                     if (res == "success") {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MyWidget()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()));
                     }
                   },
                   child: const Text('Log In')),
