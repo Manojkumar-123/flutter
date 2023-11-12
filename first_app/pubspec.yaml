@@ -39,6 +39,11 @@ dependencies:
   firebase_auth: ^4.13.0
   firebase_storage: ^11.5.0
   cloud_firestore: ^4.13.0
+  uuid: ^4.2.1
+  flutter_quill: ^8.2.2
+  notus: ^1.0.0-rc.2
+  quill_delta: ^3.0.0-nullsafety.2
+  #zefyr: ^1.0.0-rc.5
 
 dev_dependencies:
   flutter_test:
