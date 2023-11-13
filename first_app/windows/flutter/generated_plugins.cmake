@@ -8,6 +8,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   firebase_storage
   pasteboard
+  permission_handler_windows
   url_launcher_windows
 )
 

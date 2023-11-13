@@ -43,6 +43,11 @@ dependencies:
   flutter_quill: ^8.2.2
   notus: ^1.0.0-rc.2
   quill_delta: ^3.0.0-nullsafety.2
+  file_picker: ^6.1.1
+  permission_handler: ^11.0.1
+  flutter_pdfview: ^1.3.2
+  http: ^1.1.0
+  path_provider: ^2.1.1
   #zefyr: ^1.0.0-rc.5
 
 dev_dependencies:

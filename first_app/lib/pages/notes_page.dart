@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_app/model/notes.dart';
 import 'package:first_app/pages/editnote_page.dart';
 import 'package:first_app/services/notes_service.dart';
 import 'package:first_app/widgets/note_item.dart';
@@ -17,7 +16,6 @@ class NotesScreen extends StatefulWidget {
 
 class _NotesScreenState extends State<NotesScreen> {
   final User? _user = FirebaseAuth.instance.currentUser;
-  List<Notes> _userNotes = [];
 
   @override
   void initState() {
@@ -25,7 +23,7 @@ class _NotesScreenState extends State<NotesScreen> {
   }
 
   void pushEditNotePage() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: ((context) => const EditNoteScreen('', '', ''))));
@@ -34,7 +32,7 @@ class _NotesScreenState extends State<NotesScreen> {
   Future<void> addNotes() async {
     const uuid = Uuid();
     String nid = uuid.v4();
-    String res = await NotesService().addNewNote(
+    await NotesService().addNewNote(
         uid: _user!.uid, nid: nid, notes: "notes", title: "My note");
   }
 
@@ -56,6 +54,7 @@ class _NotesScreenState extends State<NotesScreen> {
             .collection('users')
             .doc(_user!.uid)
             .collection('notes')
+            .orderBy('date', descending: true)
             .snapshots(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {

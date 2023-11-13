@@ -2,8 +2,8 @@ import 'package:first_app/pages/editnote_page.dart';
 import 'package:first_app/services/notes_service.dart';
 import 'package:flutter/material.dart';
 
-class NoteItem extends StatelessWidget {
-  const NoteItem(
+class HomeNoteItem extends StatelessWidget {
+  const HomeNoteItem(
       {super.key,
       required this.title,
       required this.notes,
@@ -65,12 +65,8 @@ class NoteItem extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Theme.of(context).colorScheme.primaryContainer,
-              Theme.of(context).colorScheme.primaryContainer.withOpacity(0.8)
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-          ),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              color: Theme.of(context).colorScheme.primaryContainer),
           child: Center(
             child: Text(
               title,

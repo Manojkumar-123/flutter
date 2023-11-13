@@ -4,7 +4,6 @@ import 'package:first_app/services/notes_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:notus/notus.dart';
 import 'package:uuid/uuid.dart';
 
 class EditNoteScreen extends StatefulWidget {
@@ -21,10 +20,15 @@ class EditNoteScreen extends StatefulWidget {
 class _EditNoteScreenState extends State<EditNoteScreen> {
   QuillController noteController = QuillController.basic();
   final TextEditingController titleController = TextEditingController();
-
+  String pageTitle = 'Add Note';
+  String buttonTitle = 'Create Note';
   @override
   void initState() {
     super.initState();
+    if (widget.notes != '' || widget.title != '') {
+      pageTitle = 'Update Note';
+      buttonTitle = 'Update Note';
+    }
     noteController.document.insert(0, widget.notes);
     titleController.text = widget.title;
   }
@@ -47,7 +51,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Note'),
+        title: Text(pageTitle),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -105,7 +109,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                   onPressed: () {
                     CreateNote();
                   },
-                  child: const Text('Create Note'))
+                  child: Text(buttonTitle))
             ],
           ),
         ),

@@ -13,7 +13,12 @@ class NotesService {
           .doc(uid)
           .collection('notes')
           .doc(nid)
-          .set(Notes(nid: nid, notes: notes, title: title).toJson());
+          .set(Notes(
+                  nid: nid,
+                  notes: notes,
+                  title: title,
+                  dateTime: DateTime.now())
+              .toJson());
       res = "success";
     } catch (err) {
       return err.toString();

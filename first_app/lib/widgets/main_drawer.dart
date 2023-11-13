@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -52,6 +54,30 @@ class MainDrawer extends StatelessWidget {
               onSelectScreen("Notes", context);
             },
           ),
+          ListTile(
+            leading: Icon(
+              Icons.edit_document,
+              size: 26,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            title: Text("Documents",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .copyWith(color: Theme.of(context).colorScheme.primary)),
+            onTap: () {
+              onSelectScreen("Documents", context);
+            },
+          ),
+          ElevatedButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+              },
+              child: const Text('Sign Out'))
         ],
       ),
     );
